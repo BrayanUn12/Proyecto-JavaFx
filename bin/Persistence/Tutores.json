@@ -6,16 +6,12 @@
     "calendarios": [
       {
         "nombre": "Lunes",
-        "eventos": []
-      },
-      {
-        "nombre": "pp",
         "eventos": [
           {
-            "nombre": "pp",
-            "descripcion": "qq",
-            "horaInicio": "01:00:00",
-            "horaFinal": "01:30:00",
+            "nombre": "Calculo",
+            "descripcion": "Derivadas",
+            "horaInicio": "02:00:00",
+            "horaFinal": "02:30:00",
             "inscrito": false
           }
         ]

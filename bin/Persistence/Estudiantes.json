@@ -18,28 +18,16 @@
         ]
       },
       {
-        "nombre": "Jueves",
-        "eventos": [
-          {
-            "nombre": "Programacion",
-            "descripcion": "herencia",
-            "horaInicio": "03:00:00",
-            "horaFinal": "03:30:00",
-            "inscrito": true
-          }
-        ]
-      },
-      {
-        "nombre": "pp",
-        "eventos": [
-          {
-            "nombre": "pp",
-            "descripcion": "qq",
-            "horaInicio": "01:00:00",
-            "horaFinal": "01:30:00",
-            "inscrito": false
-          }
-        ]
+      "nombre": "Jueves",
+      "eventos": [
+        {
+          "nombre": "Programacion",
+          "descripcion": "herencia",
+          "horaInicio": "03:00:00",
+          "horaFinal": "03:30:00",
+          "inscrito": false
+        }
+      ]
       }
     ]
   },
@@ -62,7 +50,7 @@
         ]
       },
       {
-        "nombre": "Lunes",
+      "nombre": "Lunes",
         "eventos": [
           {
             "nombre": "Calculo",

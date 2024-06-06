@@ -295,10 +295,27 @@ import Model.Tutor;
                                     }
                                     break;
                                 case 2:
-                                    for(int i=0;i<tutors.get(opTut).getCalendarios().size();i++){
-                                        System.out.println(t1.verHorario(tutors.get(opTut), i));
+                                System.out.println("tutorias disponibles");
+                                for (int indexofCalendarios = 0; indexofCalendarios < tutors.get(opTut).getCalendarios().size(); indexofCalendarios++) {
+                                    for (int i = 0; i < tutors.get(opTut).getCalendarios().get(indexofCalendarios).getEventos().size(); i++) {
+                                        System.out.println((i + 1));
+                                        System.out.println(tutors.get(opTut).getCalendarios().get(indexofCalendarios).showEvents(i));
+                                        if (tutors.get(opTut).getCalendarios().get(indexofCalendarios).getEventos().get(i).isInscrito()) {
+                                            try {
+                                                int opcionTuto2 = sc.nextInt() - 1;
+                                                tutors.get(opTut).getCalendarios().get(indexofCalendarios).getEventos().remove(opcionTuto2);
+                                                String jsonTut = s1.serializeObecjtoCollectiontoJson(tutors);
+                                                t1.resetGuardarTutor(jsonTut);
+                                                System.out.println("Tutoría eliminada correctamente");
+                                            } catch (Exception e) {
+                                                System.err.println("opcion invalida " + e.getMessage());
+                                                sc.next();
+                                            }
+                                        } else {
+                                            System.out.println("no hay tutorias inscritas");
+                                        }
                                     }
-                                    break;
+                                }
                                 case 3:
                                     for(int i=0;i<tutors.get(opTut).getCalendarios().size();i++){
                                         System.out.println((i));
@@ -308,13 +325,12 @@ import Model.Tutor;
                                             opcionTutorias=sc.nextInt();
                                             tutors.get(opTut).getCalendarios().get(i).getEventos().get(opcionTutorias);
                                             System.out.print("Ingrese el nombre del evento: ");
-                                            String nombreEdit = sc.next();
-                                            sc.nextLine();
+                                            String nombreEdit = sc.nextLine();
+                                            sc.next();
                                             System.out.print("Ingrese la descripción del evento: ");
                                             String descripcionEdit = sc.nextLine();
                                             System.out.print("Ingrese el día del evento (Lunes a Viernes): ");
-                                            String diaEdit = sc.next();
-                                            sc.nextLine();
+                                            String diaEdit = sc.nextLine();
                                             boolean validHourEdit=true;
                                             int horaEdit=0;
                                             int minutoEdit=0;
@@ -423,27 +439,34 @@ import Model.Tutor;
                                     
                                     break;
                                 case 4:
-                                System.out.println("Ingrese el indice del evento que desea eliminar");
-                                for (int i=0;i<tutors.get(opTut).getCalendarios().size(); i++) {
-                                    System.out.println((i + 1) + ". " + tutors.get(opTut).getCalendarios().get(i).getNombre());
-                                }
-                                int eventoABorrar = sc.nextInt() -1;
-                                if (eventoABorrar >= 0 && eventoABorrar< tutors.get(opTut).getCalendarios().size()) {
-                                    Dia disa= tutors.get(opTut).getCalendarios().get(eventoABorrar);
-                                    int eventoInde = sc.nextInt()-1;
-                                    if (eventoInde >= 0 && eventoInde < disa.getEventos().size()) {
-                                        Evento evento3= disa.getEventos().get(eventoInde);
-                                        t1.borrarTutoria(tutors.get(opTut), evento3);
-                                        String jsonTut=s1.serializeObecjtoCollectiontoJson(tutors);
-                                        t1.resetGuardarTutor(jsonTut);
-                                        System.out.println("Evento eliminado correctamente");
-                                    }else {
-                                        System.out.println("Opcion invalida");
+                                System.out.println("Ingrese el nombre de la tutoria que desea cancelar");
+                                if (tutors != null && opTut >= 0 && opTut < tutors.size()) {
+                                    for (int i = 0; i < tutors.get(opTut).getCalendarios().size(); i++) {
+                                        for (int j = 0; j < tutors.get(opTut).getCalendarios().get(i).getEventos().size(); j++) {
+                                            System.out.println((j + 1) + ". " + tutors.get(opTut).getCalendarios().get(i).getEventos().get(j).getNombre());
+                                        }
                                     }
-                                    
-                                }else {
-                                    System.out.println("Opcion invalida");
+                                String nombreTutoriaABorrar = sc.next();
+                                boolean found = false;
+                                for (int i = 0; i < tutors.get(opTut).getCalendarios().size(); i++) {
+                                    for (int j = 0; j < tutors.get(opTut).getCalendarios().get(i).getEventos().size(); j++) {
+                                        if (tutors.get(opTut).getCalendarios().get(i).getEventos().get(j).getNombre().equals(nombreTutoriaABorrar)) {
+                                            Evento eventos = tutors.get(opTut).getCalendarios().get(i).getEventos().get(j);
+                                            tutors.get(opTut).getCalendarios().get(i).getEventos().remove(j); // Remove the Evento from the Calendarios collection
+                                            String jsonTut = s1.serializeObecjtoCollectiontoJson(tutors);
+                                            t1.resetGuardarTutor(jsonTut);
+                                            System.out.println("Tutoría eliminada correctamente");
+                                            found = true;
+                                            break;
+                                        }
+                                    }
                                 }
+                                if (!found) {
+                                    System.out.println("No se encontró una tutoría con ese nombre");
+                                }
+                            } else {
+                                System.out.println("Error: Invalid tutor selection");
+                            }
                                 break;
                                 case 5:
                                     System.out.println("Saliendo...");
