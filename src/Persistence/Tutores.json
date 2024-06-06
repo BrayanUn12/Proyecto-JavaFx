@@ -1,0 +1,40 @@
+[
+  {
+    "id": 77,
+    "firstName": "Juan",
+    "lastName": "Perez",
+    "calendarios": [
+      {
+        "nombre": "Lunes",
+        "eventos": [
+          {
+            "nombre": "Calculo",
+            "descripcion": "Derivadas",
+            "horaInicio": "02:00:00",
+            "horaFinal": "02:30:00",
+            "inscrito": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 22,
+    "firstName": "Felipe",
+    "lastName": "Maldonado",
+    "calendarios": [
+      {
+        "nombre": "Jueves",
+        "eventos": [
+          {
+            "nombre": "Programacion",
+            "descripcion": "herencia",
+            "horaInicio": "03:00:00",
+            "horaFinal": "03:30:00",
+            "inscrito": false
+          }
+        ]
+      }
+    ]
+  }
+]
